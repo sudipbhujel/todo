@@ -64,7 +64,7 @@ async function bootstrap() {
   app.setGlobalPrefix('/v1');
 
   const config = new DocumentBuilder()
-    .addServer('http://localhost:4000')
+    .addServer(configService.get('BASE_URL'))
     .addBearerAuth()
     .addCookieAuth()
     .setTitle('Todo API')

@@ -12,6 +12,7 @@ import { AuthModule } from './modules/auth/auth.module';
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
+        BASE_URL: Joi.string().required(),
         PORT: Joi.number().default(4000),
         NODE_ENV: Joi.string().default('development'),
         DATABASE_URL: Joi.string().required(),

@@ -34,6 +34,9 @@ cd client
 # Install all package
 npm i
 
+# Copy .env.example to .env
+cp .env.example .env
+
 # Start client
 npm run dev
 ```

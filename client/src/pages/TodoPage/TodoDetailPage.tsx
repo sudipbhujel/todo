@@ -5,6 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { apiConfig } from '@/config';
 
 export const TodoDetailPage = () => {
+  console.log('Env = ', import.meta.env.VITE_API_URL);
+
   const { id } = useParams();
 
   const navigate = useNavigate();
