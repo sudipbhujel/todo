@@ -1,41 +1,28 @@
-import { apiConfig } from '@/config';
 import { useAuth } from '@/hooks/useAuth';
 import { useDeleteTodo } from '@/hooks/useDeleteTodo';
 import { useUpdateTodo } from '@/hooks/useUpdateTodo';
-import { TodosApi } from '@openapi/api';
-import { useQuery } from '@tanstack/react-query';
 
 import { useState } from 'react';
 import { Loader } from '@components/Loader';
+import { useGetTodos } from '@/hooks/useGetTodos';
 
 export const Todo = () => {
   const [statusState, setStatusState] = useState<string | undefined>(undefined);
 
   const { data: user, isLoading: authLoading } = useAuth();
 
-  const { data, isLoading: todosLoading } = useQuery(
-    ['todos', statusState],
-    async () => {
-      const api = new TodosApi(apiConfig);
-
-      const response = await api.todosControllerFindAll(undefined, statusState);
-      return response.data;
-    },
-    {
-      retry: 1
-    }
-  );
+  const { data: todos, isLoading: todosLoading } = useGetTodos(statusState);
 
   const { mutate: mutateDelete, isLoading: deleteLoading } = useDeleteTodo();
+
+  const { mutate: mutateTodo } = useUpdateTodo();
+
+  if (authLoading || todosLoading || deleteLoading) return <Loader />;
 
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value === 'all' ? undefined : e.target.value;
     setStatusState(value);
   };
-
-  const { mutate: mutateTodo } = useUpdateTodo();
-
-  if (authLoading || todosLoading || deleteLoading) return <Loader />;
 
   return (
     <div>
@@ -62,7 +49,7 @@ export const Todo = () => {
             </a>
           </div>
           <ul className="">
-            {data?.map((todo, index: number) => (
+            {todos?.map((todo, index: number) => (
               <li
                 key={index}
                 className="flex items-center justify-between p-2 my-1 border-2 rounded border-slate-50 text-slate-600"
@@ -109,7 +96,7 @@ export const Todo = () => {
                 </div>
               </li>
             ))}
-            {!data?.length && (
+            {!todos?.length && (
               <div className="flex justify-center text-slate-500">
                 No items available.
               </div>

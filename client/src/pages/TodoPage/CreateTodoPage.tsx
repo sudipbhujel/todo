@@ -1,46 +1,19 @@
-import { AxiosError } from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-
-import { apiConfig } from '@/config';
 import { Layout } from '@components/Layout/Layout';
-import { TodosApi } from '@openapi/api';
-import { useMutation } from '@tanstack/react-query';
+import { useCreateTodo } from '@/hooks/useCreateTodo';
 
 export const CreateTodoPage = () => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [file, setFile] = useState<File | undefined>(undefined);
 
-  const navigate = useNavigate();
-
-  const { mutate } = useMutation(
-    async () => {
-      const api = new TodosApi(apiConfig);
-      const response = await api.todosControllerCreate(
-        title,
-        description,
-        file
-      );
-      return response.data;
-    },
-    {
-      onSuccess: () => {
-        toast.success('Your task is created successfully.');
-        navigate('/');
-        navigate(0);
-      },
-      onError(error: AxiosError) {
-        toast.error(error.message);
-      }
-    }
-  );
+  const { mutate } = useCreateTodo();
 
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    mutate();
+    mutate({ title, description, file });
   };
+
   return (
     <Layout>
       <div className="flex items-center justify-between">

@@ -1,12 +1,8 @@
-import { TodosApi } from '@openapi/api';
 import { Layout } from '@components/Layout/Layout';
-import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { apiConfig } from '@/config';
+import { useGetOneTodo } from '@/hooks/useGetOneTodo';
 
 export const TodoDetailPage = () => {
-  console.log('Env = ', import.meta.env.VITE_API_URL);
-
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -16,18 +12,7 @@ export const TodoDetailPage = () => {
     return <></>;
   }
 
-  const { data } = useQuery(
-    ['todos', id],
-    async () => {
-      const api = new TodosApi(apiConfig);
-
-      const response = await api.todosControllerFindOne(parseInt(id));
-      return response.data;
-    },
-    {
-      retry: 1
-    }
-  );
+  const { data } = useGetOneTodo(parseInt(id));
 
   return (
     <Layout>
