@@ -32,7 +32,7 @@ export const Todo = () => {
 
   const { mutate: mutateTodo } = useUpdateTodo();
 
-  if (!authLoading || todosLoading || deleteLoading) return <Loader />;
+  if (authLoading || todosLoading || deleteLoading) return <Loader />;
 
   return (
     <div>
