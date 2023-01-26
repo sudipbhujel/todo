@@ -30,6 +30,12 @@ RUN npm install
 
 COPY . .
 
+RUN cd src
+
+RUN npx prisma generate
+
+RUN npx prisma migrate dev --name todo
+
 RUN npm run build
 
 # Run the app
