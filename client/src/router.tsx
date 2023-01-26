@@ -10,7 +10,7 @@ import { TodoDetailPage } from '@pages/TodoPage/TodoDetailPage';
 import { UpdateTodoPage } from '@pages/TodoPage/UpdateTodoPage';
 
 export const Router = () => {
-  const { user } = useAuth();
+  const { data: user } = useAuth();
   return (
     <Routes>
       <Route index element={<HomePage />} />

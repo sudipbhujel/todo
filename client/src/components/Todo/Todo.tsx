@@ -6,20 +6,24 @@ import { TodosApi } from '@openapi/api';
 import { useQuery } from '@tanstack/react-query';
 
 import { useState } from 'react';
+import { Loader } from '@components/Loader';
 
 export const Todo = () => {
   const [statusState, setStatusState] = useState<string | undefined>(undefined);
 
-  const { user } = useAuth();
+  const { data: user, isLoading: authLoading } = useAuth();
 
-  const { data } = useQuery(['todos', statusState], async () => {
-    const api = new TodosApi(apiConfig);
+  const { data, isLoading: todosLoading } = useQuery(
+    ['todos', statusState],
+    async () => {
+      const api = new TodosApi(apiConfig);
 
-    const response = await api.todosControllerFindAll(undefined, statusState);
-    return response.data;
-  });
+      const response = await api.todosControllerFindAll(undefined, statusState);
+      return response.data;
+    }
+  );
 
-  const { mutate: mutateDelete } = useDeleteTodo();
+  const { mutate: mutateDelete, isLoading: deleteLoading } = useDeleteTodo();
 
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value === 'all' ? undefined : e.target.value;
@@ -27,6 +31,8 @@ export const Todo = () => {
   };
 
   const { mutate: mutateTodo } = useUpdateTodo();
+
+  if (authLoading || todosLoading || deleteLoading) return <Loader />;
 
   return (
     <div>

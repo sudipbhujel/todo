@@ -38,8 +38,6 @@ async function bootstrap() {
     }),
   );
 
-  logger.log('Whilelist', whitelist);
-
   app.enableCors({
     origin: function (origin: string, callback: any) {
       logger.log(`origin: ${origin}`);
