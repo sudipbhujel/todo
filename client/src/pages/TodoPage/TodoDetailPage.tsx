@@ -35,12 +35,14 @@ export const TodoDetailPage = () => {
         <div className="flex items-center gap-4">
           <h1 className="text-3xl font-bold">Todo #{data?.id}</h1>
         </div>
-        <a
-          href={`/todos/edit/${data?.id}`}
-          className="px-5 py-2 text-sm font-medium text-blue-600 rounded-lg"
-        >
-          Edit Todo
-        </a>
+        {data?.status !== 'completed' && (
+          <a
+            href={`/todos/edit/${data?.id}`}
+            className="px-5 py-2 text-sm font-medium text-blue-600 rounded-lg"
+          >
+            Edit Todo
+          </a>
+        )}
       </div>
       <div className="grid grid-cols-2 gap-2 ">
         <div>
