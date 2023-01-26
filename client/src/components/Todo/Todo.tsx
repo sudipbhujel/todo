@@ -67,7 +67,11 @@ export const Todo = () => {
                     defaultChecked={todo?.status == 'completed' ? true : false}
                     disabled={todo?.status == 'completed' ? true : false}
                     onChange={() =>
-                      mutateTodo({ id: todo.id, status: 'completed' })
+                      mutateTodo({
+                        id: todo.id,
+                        title: todo.title,
+                        status: 'completed'
+                      })
                     }
                   />
 
