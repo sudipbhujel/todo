@@ -42,3 +42,6 @@ npm run dev
 ```
 
 **Client will run on 3000 port.**
+
+Backend Docs - https://api.todo.up.railway.app/docs
+Client Url - https://todo-sudip.up.railway.app/

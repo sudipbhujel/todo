@@ -20,6 +20,9 @@ export const Todo = () => {
 
       const response = await api.todosControllerFindAll(undefined, statusState);
       return response.data;
+    },
+    {
+      retry: 1
     }
   );
 

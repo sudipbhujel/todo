@@ -18,12 +18,18 @@ export const UpdateTodoPage = () => {
     return <></>;
   }
 
-  const { data } = useQuery(['todos', paramId], async () => {
-    const api = new TodosApi(apiConfig);
+  const { data } = useQuery(
+    ['todos', paramId],
+    async () => {
+      const api = new TodosApi(apiConfig);
 
-    const response = await api.todosControllerFindOne(parseInt(paramId));
-    return response.data;
-  });
+      const response = await api.todosControllerFindOne(parseInt(paramId));
+      return response.data;
+    },
+    {
+      retry: 1
+    }
+  );
 
   const [id, setId] = useState<number>(parseInt(paramId));
   const [title, setTitle] = useState<string>('');

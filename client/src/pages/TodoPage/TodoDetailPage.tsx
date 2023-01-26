@@ -16,12 +16,18 @@ export const TodoDetailPage = () => {
     return <></>;
   }
 
-  const { data } = useQuery(['todos', id], async () => {
-    const api = new TodosApi(apiConfig);
+  const { data } = useQuery(
+    ['todos', id],
+    async () => {
+      const api = new TodosApi(apiConfig);
 
-    const response = await api.todosControllerFindOne(parseInt(id));
-    return response.data;
-  });
+      const response = await api.todosControllerFindOne(parseInt(id));
+      return response.data;
+    },
+    {
+      retry: 1
+    }
+  );
 
   return (
     <Layout>
