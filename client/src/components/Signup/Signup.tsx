@@ -1,3 +1,4 @@
+import { apiConfig } from '@/config';
 import { AuthenticationApi } from '@openapi/api';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
@@ -14,7 +15,7 @@ export const Signup = () => {
 
   const { mutate } = useMutation(
     async () => {
-      const api = new AuthenticationApi();
+      const api = new AuthenticationApi(apiConfig);
       const response = await api.authControllerRegister({
         name,
         email,
