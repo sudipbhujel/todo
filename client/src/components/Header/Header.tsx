@@ -1,12 +1,11 @@
 import logo from '@/assets/to-do-list-svgrepo-com.svg';
 import { useAuth } from '@/hooks/useAuth';
 import { LogoutButton } from '@components/Logout';
-import { Loader } from '@components/Loader';
 
 export const Header = () => {
   const { data: user, isLoading } = useAuth();
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return null;
 
   return (
     <header className="p-2 shadow-sm">
