@@ -39,3 +39,6 @@ migrations/
 
 # Files
 uploads/
+
+# Env file
+.env
