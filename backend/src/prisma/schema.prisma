@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Enum can be implemented to status field of todo
+// enum Status {
+//   NOT_STARTED
+//   COMPLETED
+// }
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String?
+  todos    Todo[]
+}
+
+model Todo {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  file_url    String?
+  status      String?  @default("not started")
+  is_deleted  Boolean? @default(false)
+  user        User?    @relation(fields: [user_id], references: [id])
+  user_id     Int
+}
