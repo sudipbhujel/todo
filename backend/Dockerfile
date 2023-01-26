@@ -30,11 +30,9 @@ RUN npm install
 
 COPY . .
 
-RUN cd src
+RUN cd src && npx prisma generate
 
-RUN npx prisma generate
-
-RUN npx prisma migrate dev --name todo
+RUN cd src && npx prisma migrate dev --name todo
 
 RUN npm run build
 
