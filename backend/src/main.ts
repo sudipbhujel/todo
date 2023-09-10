@@ -59,8 +59,6 @@ async function bootstrap() {
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
 
-  app.setGlobalPrefix('/v1');
-
   const config = new DocumentBuilder()
     .addServer(configService.get('BASE_URL'))
     .addBearerAuth()
