@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { apiConfig } from '@/config';
@@ -73,12 +73,12 @@ export const UpdateTodoPage = () => {
     <Layout>
       <div className="flex items-center justify-between">
         <h1 className="mb-4 text-3xl font-bold">Update Todo</h1>
-        <a
-          href="/"
+        <Link
+          to="/"
           className="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg"
         >
           Back
-        </a>
+        </Link>
       </div>
       {/* <pre>{JSON.stringify(data?.data)}</pre> */}
 

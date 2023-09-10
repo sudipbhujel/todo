@@ -1,5 +1,5 @@
 import { Layout } from '@components/Layout/Layout';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useGetOneTodo } from '@/hooks/useGetOneTodo';
 
 export const TodoDetailPage = () => {
@@ -21,12 +21,12 @@ export const TodoDetailPage = () => {
           <h1 className="text-3xl font-bold">Todo #{data?.id}</h1>
         </div>
         {data?.status !== 'completed' && (
-          <a
-            href={`/todos/edit/${data?.id}`}
+          <Link
+            to={`/todos/edit/${data?.id}`}
             className="px-5 py-2 text-sm font-medium text-blue-600 rounded-lg"
           >
             Edit Todo
-          </a>
+          </Link>
         )}
       </div>
       <div className="grid grid-cols-2 gap-2 ">

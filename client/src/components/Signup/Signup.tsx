@@ -3,7 +3,7 @@ import { AuthenticationApi } from '@openapi/api';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const Signup = () => {
@@ -45,38 +45,6 @@ export const Signup = () => {
         <main className="flex items-center justify-center px-8 py-2 sm:px-12 lg:py-4 lg:px-16">
           <div className="max-w-xl px-4 py-4 shadow-sm lg:max-w-3xl">
             <form action="#" className="grid grid-cols-12 gap-6 mt-8">
-              {/* <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="FirstName"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  First Name
-                </label>
-
-                <input
-                  type="text"
-                  id="FirstName"
-                  name="first_name"
-                  className="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
-                />
-              </div>
-
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="LastName"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Last Name
-                </label>
-
-                <input
-                  type="text"
-                  id="LastName"
-                  name="last_name"
-                  className="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
-                />
-              </div> */}
-
               <div className="col-span-12">
                 <label
                   htmlFor="name"
@@ -138,9 +106,9 @@ export const Signup = () => {
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-2">
                   Already have an account?
-                  <a href="/login" className="ml-2 text-gray-700 underline">
+                  <Link to="/login" className="ml-2 text-gray-700 underline">
                     Login
-                  </a>
+                  </Link>
                   .
                 </p>
               </div>

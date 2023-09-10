@@ -3,7 +3,7 @@ import { AuthenticationApi } from '@openapi/api';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const Login = () => {
@@ -118,9 +118,9 @@ export const Login = () => {
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-2">
                   Don{"'"}t have an account?
-                  <a href="/signup" className="ml-2 text-gray-700 underline">
+                  <Link to="/signup" className="ml-2 text-gray-700 underline">
                     Sign up
-                  </a>
+                  </Link>
                   .
                 </p>
               </div>

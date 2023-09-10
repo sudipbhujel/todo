@@ -35,11 +35,11 @@ export const LogoutButton = () => {
   };
 
   return (
-    <a
+    <button
       className="inline-block rounded bg-red-600 px-2 py-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-500 hover:cursor-pointer"
       onClick={handleSubmit}
     >
       Log out
-    </a>
+    </button>
   );
 };

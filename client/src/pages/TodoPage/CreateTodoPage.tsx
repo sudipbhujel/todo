@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Layout } from '@components/Layout/Layout';
 import { useCreateTodo } from '@/hooks/useCreateTodo';
+import { Link } from 'react-router-dom';
 
 export const CreateTodoPage = () => {
   const [title, setTitle] = useState<string>('');
@@ -18,12 +19,12 @@ export const CreateTodoPage = () => {
     <Layout>
       <div className="flex items-center justify-between">
         <h1 className="mb-4 text-3xl font-bold">Create Todo</h1>
-        <a
-          href="/"
+        <Link
+          to="/"
           className="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg"
         >
           Back
-        </a>
+        </Link>
       </div>
       {/* <pre>{JSON.stringify(data?.data)}</pre> */}
 

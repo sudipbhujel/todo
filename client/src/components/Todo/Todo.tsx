@@ -5,6 +5,7 @@ import { useUpdateTodo } from '@/hooks/useUpdateTodo';
 import { useState } from 'react';
 import { Loader } from '@components/Loader';
 import { useGetTodos } from '@/hooks/useGetTodos';
+import { Link } from 'react-router-dom';
 
 export const Todo = () => {
   const [statusState, setStatusState] = useState<string | undefined>(undefined);
@@ -41,12 +42,12 @@ export const Todo = () => {
                 <option value="completed">Completed</option>
               </select>
             </div>
-            <a
-              href="/todos/new"
+            <Link
+              to="/todos/new"
               className="px-5 py-2 text-sm font-medium text-blue-600 rounded-lg"
             >
               Create Todo
-            </a>
+            </Link>
           </div>
           <ul className="">
             {todos?.map((todo, index: number) => (
@@ -71,21 +72,21 @@ export const Todo = () => {
                     }
                   />
 
-                  <a
+                  <Link
                     className="text-blue-600 underline cursor-pointer hover:text-blue-900"
-                    href={`/todos/${todo.id}`}
+                    to={`/todos/${todo.id}`}
                   >
                     {todo?.title}
-                  </a>
+                  </Link>
                 </div>
                 <div className="flex items-center gap-2">
                   {todo?.status !== 'completed' && (
-                    <a
+                    <Link
                       className="inline-block px-2 py-2 text-sm font-medium text-white transition bg-blue-600 rounded hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-blue-500 hover:cursor-pointer"
-                      href={`/todos/edit/${todo.id}`}
+                      to={`/todos/edit/${todo.id}`}
                     >
                       Edit
-                    </a>
+                    </Link>
                   )}
                   <button
                     className="inline-block px-2 py-2 text-sm font-medium text-white transition bg-red-600 rounded hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-red-500 hover:cursor-pointer"
